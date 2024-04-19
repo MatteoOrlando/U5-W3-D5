@@ -1,5 +1,6 @@
 package matteoorlando.u5d15.service;
 //import matteoorlando.u5d15.entities.Role;
+import matteoorlando.u5d15.entities.LoginRequest;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,7 +50,11 @@ public class AuthService {
             return new ResponseEntity<>("Incorrect password", HttpStatus.UNAUTHORIZED);
         }
 
-        // se la pass corrispone
+        // se la pass corrispone tutto ok
+        return new ResponseEntity<>("Login successful", HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> loginUser(LoginRequest loginRequest) {
         return new ResponseEntity<>("Login successful", HttpStatus.OK);
     }
 }
