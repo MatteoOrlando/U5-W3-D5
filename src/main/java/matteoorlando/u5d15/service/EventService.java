@@ -31,9 +31,9 @@ public class EventService {
         return new ResponseEntity<>("Event created successfully", HttpStatus.CREATED);
     }
 
-    //Add metodo per aggiornare un evento
-    //verifico se l'evento esiste e, in caso affermativo,
-    //aggiorno i dettagli dell'evento con quelli forniti nel updatedEvent
+    // Add metodo per aggiornare un evento
+    // verifico se l'evento esiste e, in caso affermativo,
+    // aggiorno i dettagli dell'evento con quelli forniti nel updatedEvent
     public ResponseEntity<?> updateEvent(Long eventId, Event updatedEvent) {
         Optional<Event> optionalEvent = eventRepository.findById(eventId);
         if (optionalEvent.isPresent()) {
@@ -52,8 +52,8 @@ public class EventService {
     }
 
 
-    // Method to delete an event
-    //Nel metodo deleteEvent, verifico se l'evento esiste e, in caso affermativo,
+    // Add metodo per cancellare un evento
+    // Nel metodo deleteEvent, verifico se l'evento esiste e, in caso affermativo,
     // lo elimino utilizzando il suo ID.
     public ResponseEntity<?> deleteEvent(Long eventId) {
         Optional<Event> optionalEvent = eventRepository.findById(eventId);

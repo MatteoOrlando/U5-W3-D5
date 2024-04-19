@@ -15,4 +15,13 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+    // Metodo utilizzato per salvare un utente nle db
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+
+    // Metodo utilizzato per verificare se esiste un Utente con lo username specificato
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
 }

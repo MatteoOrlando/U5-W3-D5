@@ -8,5 +8,8 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
-    List<User> findByRoles_Name(String roleName);
+
+    // implemento il metodo existsBy nello UserRepository per eseguire una query e
+    // per verificare se esiste un utente con lo username specificato nel database
+    boolean existsByUsername(String username);
 }
