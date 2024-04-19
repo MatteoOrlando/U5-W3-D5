@@ -33,7 +33,7 @@ public class EventService {
 
     //Add metodo per aggiornare un evento
     //verifico se l'evento esiste e, in caso affermativo,
-    //aggiornio i dettagli dell'evento con quelli forniti nel updatedEvent
+    //aggiorno i dettagli dell'evento con quelli forniti nel updatedEvent
     public ResponseEntity<?> updateEvent(Long eventId, Event updatedEvent) {
         Optional<Event> optionalEvent = eventRepository.findById(eventId);
         if (optionalEvent.isPresent()) {
@@ -46,6 +46,20 @@ public class EventService {
             event.setAvailableSeats(updatedEvent.getAvailableSeats());
             eventRepository.save(event);
             return new ResponseEntity<>("Event updated successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Event not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    // Method to delete an event
+    //Nel metodo deleteEvent, verifico se l'evento esiste e, in caso affermativo,
+    // lo elimino utilizzando il suo ID.
+    public ResponseEntity<?> deleteEvent(Long eventId) {
+        Optional<Event> optionalEvent = eventRepository.findById(eventId);
+        if (optionalEvent.isPresent()) {
+            eventRepository.deleteById(eventId);
+            return new ResponseEntity<>("Event deleted successfully", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Event not found", HttpStatus.NOT_FOUND);
         }
