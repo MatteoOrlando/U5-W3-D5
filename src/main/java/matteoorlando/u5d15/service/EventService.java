@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 
 
@@ -27,6 +29,26 @@ public class EventService {
         eventRepository.save(event);
 
         return new ResponseEntity<>("Event created successfully", HttpStatus.CREATED);
+    }
+
+    //Add metodo per aggiornare un evento
+    //verifico se l'evento esiste e, in caso affermativo,
+    //aggiornio i dettagli dell'evento con quelli forniti nel updatedEvent
+    public ResponseEntity<?> updateEvent(Long eventId, Event updatedEvent) {
+        Optional<Event> optionalEvent = eventRepository.findById(eventId);
+        if (optionalEvent.isPresent()) {
+            Event event = optionalEvent.get();
+
+            event.setTitle(updatedEvent.getTitle());
+            event.setDescription(updatedEvent.getDescription());
+            event.setDate(updatedEvent.getDate());
+            event.setLocation(updatedEvent.getLocation());
+            event.setAvailableSeats(updatedEvent.getAvailableSeats());
+            eventRepository.save(event);
+            return new ResponseEntity<>("Event updated successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Event not found", HttpStatus.NOT_FOUND);
+        }
     }
 }
 
